@@ -6,7 +6,7 @@ CFLAGS = -fPIC -Wall -O2 -m64 -D__cdecl= -I$(curlINC) -c
 LIBNAME = $(OBJ).$(EXT)
 OBJNAME = $(OBJ).o
 DEFNAME = $(OBJ).def
-SHFLAGS = -m64 -shared -L/usr/lib64 -L$(LIB)
+SHFLAGS = -m64 -shared -L$(curlLIB) -L$(LIB) 
 
 vpath %.ox .
 vpath %.c .
@@ -26,6 +26,6 @@ $(LIBNAME) : $(OBJNAME)
 
 %.$(EXT) : %.o
 	$(ERASE) $@
-	$(CC) $(SHFLAGS) -o $(LIBNAME) $^ -lcurldll -loxwin $(DEFNAME)
-	$(COPY) $@ $(LIB)\lib$@ 
+	$(CC) $(SHFLAGS) -o $(LIBNAME) $^ -l$(LCNAME)
+	$(COPY) $@ $(LIB)/lib$@ 
 	$(ERASE) $@

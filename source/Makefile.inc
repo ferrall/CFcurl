@@ -1,14 +1,16 @@
 Version := OxMetrics7
-OS := Windows
+OS := Linux
 
 CFcurlHOME = ..
-INC := $(CFcurlHOME)\include
-LIB := $(CFcurlHOME)\lib
+INC := $(CFcurlHOME)/include
+LIB := $(CFcurlHOME)/lib
 curlINC = $(INC)
+curlLIB = $(LIB)
 
 ifeq ($(OS), Windows)
 	OX := "C:\Program Files\$(Version)\Ox\bin64\oxl.exe"
-    EXT = dll
+	LCNAME=curldll
+    	EXT = dll
 	OXFLAGS := -d 
 	ECHO := echo
 	CD := dir
@@ -19,19 +21,23 @@ ifeq ($(OS), Windows)
 else ifeq ($(OS), Darwin)
 	OX := oxl
 	OXFLAGS := -d 
+	curlLIB = /usr/lib64
+	LCNAME=curl
 	ECHO := printf
 	CD := cd
 	COPY := cp
-	ERASE := rm
+	ERASE := rm -f 
 	SED := sed
-    EXT = so
+    	EXT = so
 else ifeq ($(OS), Linux)
 	OX := /home/ferrallc/bin/$(Version)/ox/bin64/oxl
 	OXFLAGS := -DMPI -d 
+	curlLIB = /usr/lib64
+	LCNAME=curl
 	ECHO := printf
 	CD := cd
 	COPY := cp
-	ERASE := rm
+	ERASE := rm -f 
 	SED := sed
-    EXT = so
+    	EXT = so
 endif
