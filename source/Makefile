@@ -27,6 +27,6 @@ $(LIBNAME) : $(OBJNAME)
 
 %.$(EXT) : %.o
 	$(ERASE) $@
-	$(CC) $(SHFLAGS) -o $(LIBNAME) $^ -l$(LCNAME) $(OXWIN) CFcurl.def
+	$(CC) $(SHFLAGS) -o $(LIBNAME) $^ -l$(LCNAME) $(XTRA) 
 	$(COPY) $@ $(LIB)$(SLASH)lib$@ 
 	$(ERASE) $@
