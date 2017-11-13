@@ -22,10 +22,11 @@ $(LIBNAME) : $(OBJNAME)
 	$(ERASE) $@
 
 %.o : %.c
+	$(ERASE) $@
 	$(CC) $(CFLAGS) -fPIC $< 
 
 %.$(EXT) : %.o
 	$(ERASE) $@
-	$(CC) $(SHFLAGS) -o $(LIBNAME) $^ -l$(LCNAME) -loxwin CFcurl.def
+	$(CC) $(SHFLAGS) -o $(LIBNAME) $^ -l$(LCNAME) $(OXWIN) CFcurl.def
 	$(COPY) $@ $(LIB)$(SLASH)lib$@ 
 	$(ERASE) $@

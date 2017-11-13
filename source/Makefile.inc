@@ -15,6 +15,7 @@ ifdef ComSpec
 	OX := "C:\Program Files\$(Version)\Ox\bin64\oxl.exe"
     curlLIB = $(LIB)
 	LCNAME=curldll
+    OXWIN=-loxwin
     EXT = dll
 	OXFLAGS := -d 
 	ECHO := echo
@@ -27,6 +28,7 @@ else
 	OX := /home/ferrallc/bin/$(Version)/ox/bin64/oxl
 	OXFLAGS := -DMPI -d 
 	curlLIB = /usr/lib64
+    OXWIN=
 	LCNAME=curl
 	ECHO := printf
 	CD := cd
